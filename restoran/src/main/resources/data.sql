@@ -55,11 +55,11 @@ INSERT INTO drink_menu_items (drink_menu_id, items_id) VALUES (1,3);
 INSERT INTO drink_menu_items (drink_menu_id, items_id) VALUES (1,4);
 
 INSERT INTO restaurant (name,location, lng, lat,species, menu_id,drink_menu_id) values ('Minuta','Novi Sad','19.83354959999997','45.2671352', 'Brza hrana',1,1);
-INSERT INTO restaurant (name,location,lng, lat, species) values ('Ciao','Novi Sad', '19.83354959999997','45.2671352','Italijanska kuhinja');
-INSERT INTO restaurant (name, location, lng, lat,species) values ('Dva Stapica','Novi Sad', '19.83354959999997','45.2671352','Kineski');
-INSERT INTO restaurant (name, location,lng, lat,species) values ('Paprika','Novi Sad','19.83354959999997','45.2671352', 'Rositlj');
-INSERT INTO restaurant (name, location,lng, lat,species) values ('Moja reka','Uzice','19.842093699999964','43.8554024', 'Srpska kuhinja');
-INSERT INTO restaurant (name, location,lng, lat,species) values ('Burrito Madre','Beograd','20.44892159999995','44.786568', 'Meksikan');
+INSERT INTO restaurant (name,location,lng, lat, species, menu_id, drink_menu_id) values ('Ciao','Novi Sad', '19.83354959999997','45.2671352','Italijanska kuhinja',1,1);
+INSERT INTO restaurant (name, location, lng, lat,species,menu_id, drink_menu_id) values ('Dva Stapica','Novi Sad', '19.83354959999997','45.2671352','Kineski',1,1);
+INSERT INTO restaurant (name, location,lng, lat,species,menu_id, drink_menu_id) values ('Paprika','Novi Sad','19.83354959999997','45.2671352', 'Rositlj',1,1);
+INSERT INTO restaurant (name, location,lng, lat,species, menu_id, drink_menu_id) values ('Moja reka','Uzice','19.842093699999964','43.8554024', 'Srpska kuhinja',1,1);
+INSERT INTO restaurant (name, location,lng, lat,species, menu_id, drink_menu_id) values ('Burrito Madre','Beograd','20.44892159999995','44.786568', 'Meksikan',1,1);
 
 
 INSERT INTO restaurant_manager (restaurant_id, manager_id) values (1,1);
@@ -185,9 +185,18 @@ INSERT INTO table_of_restaurant (number, number_of_chairs, region_id, restaurant
 
 INSERT INTO reservation (restaurant_id, start_time, end_time) VALUES (1,'24/05/2017 15:00','24/05/2017 16:00');
 INSERT INTO table_reservation (reservation_id, table_id, start_time, end_time) VALUES (1,19,'24/05/2017 15:00','24/05/2017 16:00');
-INSERT INTO guest_reservation (guest_id, reservation_id, accepted,rate) VALUES (1, 1, TRUE,false);
+INSERT INTO guest_reservation (guest_id, reservation_id, accepted,rate) VALUES (1, 1, TRUE,TRUE);
 INSERT INTO drink_menu_item_reservation (reservation_id, guest_id, drink_menu_item_id, prepared, quantity) VALUES (1,1,1,FALSE,1);
 INSERT INTO menu_item_reservation (reservation_id, guest_id, menu_item_id, prepared, quantity) VALUES (1,1,1,FALSE,1);
+INSERT INTO menu_item_reservation (reservation_id, guest_id, menu_item_id, prepared, quantity) VALUES (1,1,2,FALSE,2);
+
+
+INSERT INTO reservation (restaurant_id, start_time, end_time) VALUES (1,'05/06/2017 15:00','05/06/2017 16:00');
+INSERT INTO table_reservation (reservation_id, table_id, start_time, end_time) VALUES (2,1,'24/05/2017 15:00','24/05/2017 16:00');
+INSERT INTO guest_reservation (guest_id, reservation_id, accepted,rate) VALUES (1, 2, TRUE,FALSE);
+INSERT INTO drink_menu_item_reservation (reservation_id, guest_id, drink_menu_item_id, prepared, quantity) VALUES (2,1,1,FALSE,1);
+INSERT INTO menu_item_reservation (reservation_id, guest_id, menu_item_id, prepared, quantity) VALUES (2,1,1,FALSE,1);
+
 
 INSERT INTO supply (chosed, from_date, name, to_date, rest_id, version) values (FALSE, '2017-07-29T23:30:00.000Z', 'Coca Cola (not stated)', '2017-07-30T23:30:00.000Z',1,0);
 INSERT INTO supply (chosed, from_date, name, to_date, rest_id, version) values (FALSE, '2017-05-24T23:30:00.000Z', 'ananas (deadline exceeded)', '2017-05-24T23:30:00.000Z',1,0);
@@ -198,9 +207,9 @@ INSERT INTO supply (chosed, from_date, name, to_date, rest_id, version) values (
 INSERT INTO offer (price, quality, status, supplier_id, supply_id) values (100,4,0,1,4);
 INSERT INTO offer (price, quality, status, supplier_id, supply_id) values (100,5,2,1,5);
 
-INSERT INTO rate_menu_item (rate, guest_id, menu_item_id, reservation_id) values (2,1,1,1);
-INSERT INTO rate_menu_item (rate, guest_id, menu_item_id, reservation_id) values (3,1,1,1);
-INSERT INTO rate_menu_item (rate, guest_id, menu_item_id, reservation_id) values (3,1,1,1);
+INSERT INTO rate_menu_item (rate, guest_id, menu_item_id, reservation_id) values (5,1,1,1);
+INSERT INTO rate_menu_item (rate, guest_id, menu_item_id, reservation_id) values (5,1,2,1);
+INSERT INTO rate_restaurant (rate, guest_id, restaurant_id, reservation_id, rate_food) values (4,1,1,1,5);
 
 INSERT INTO employee(first_name, last_name, email, password, active, numbC, numbS,type, date ) values ('f', 'ln', 'fn.ln@gmail.com','123', false, 32, 32, 1, '04/11/1995');
 INSERT INTO employee(first_name, last_name, email, password, active, numbC, numbS,type, date) values ('emp2', 'emp2', 'emp.emp@gmail.com','emp', false, 32, 32, 1, '04/11/1995');
