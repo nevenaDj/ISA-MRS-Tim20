@@ -689,7 +689,8 @@ public class GuestController {
 				if (menuItem.getId() == null) {
 					reservationService.saveMenuItem(menuItem);
 				} else {
-					reservationService.updateMenuItem(menuItem.getId(), menuItem.getQuantity(), itemsReservation.isPrepared());
+					reservationService.updateMenuItem(menuItem.getId(), menuItem.getQuantity(),
+							itemsReservation.isPrepared());
 					if (hashReservedItems.containsKey(menuItem.getId())) {
 						hashReservedItems.remove(menuItem.getId());
 					}
@@ -700,7 +701,8 @@ public class GuestController {
 				if (drinkMenuItem.getId() == null) {
 					reservationService.saveDrinkMenuItem(drinkMenuItem);
 				} else {
-					reservationService.updateDrinkItem(drinkMenuItem.getId(), drinkMenuItem.getQuantity(), itemsReservation.isPrepared());
+					reservationService.updateDrinkItem(drinkMenuItem.getId(), drinkMenuItem.getQuantity(),
+							itemsReservation.isPrepared());
 					if (hashReservedDrink.containsKey(drinkMenuItem.getId())) {
 						hashReservedDrink.remove(drinkMenuItem.getId());
 					}
@@ -729,8 +731,8 @@ public class GuestController {
 
 		GuestReservation g = reservationService.getGuestReservation(rate.getReservation().getId(),
 				rate.getGuest().getId());
-		
-		if (g.isRate()){
+
+		if (g.isRate()) {
 			return new ResponseEntity<Collection<Reservation>>(HttpStatus.NOT_FOUND);
 		}
 		RateRestaurant rateRestaurant = new RateRestaurant(rate.getGuest(), rate.getReservation().getRestaurant(),
@@ -769,13 +771,14 @@ public class GuestController {
 
 		User u = userService.getLogin();
 		userService.changePassword(u.getId(), guest.getPassword());
+		userService.logout();
 
 		return new ResponseEntity<Guest>(HttpStatus.OK);
 	}
 
 	/***
-	 * Return all restaurants with name or spacies that match the
-	 * search criteria
+	 * Return all restaurants with name or spacies that match the search
+	 * criteria
 	 ***/
 	@RequestMapping(value = "/api/restaurant/searchRestaurants", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Restaurant>> searchRestaurants(@RequestBody Restaurant restaurant) {
