@@ -277,6 +277,10 @@ angular.module('myApp').controller('SystemManagerController',['$scope','$http','
     $scope.changeToChangePassword= function(){
     	$scope.page="new_pass";    	
     }
+    
+    $scope.restart=function(){
+    	$route.reload();
+    }
 
    
 

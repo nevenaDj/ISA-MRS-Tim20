@@ -292,4 +292,8 @@ angular.module('myApp').controller('SupplierController',['$scope','$http','$wind
 									$route.reload();
 								});
   	}
+  	
+  	 $scope.restart=function(){
+     	$route.reload();
+     }
 }]);

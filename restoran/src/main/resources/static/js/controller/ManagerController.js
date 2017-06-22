@@ -943,6 +943,10 @@ angular.module('myApp').controller('ManagerController',['$scope','$http','$windo
     					$route.reload();
   				});
       }
+      
+      $scope.restart=function(){
+      	$route.reload();
+      }
  
 
 }]);
