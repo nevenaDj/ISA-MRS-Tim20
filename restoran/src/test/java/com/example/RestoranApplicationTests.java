@@ -630,7 +630,8 @@ public class RestoranApplicationTests {
 
 	@Test
 	public void getSuppliersRest() throws Exception {
-		Restaurant sm = restRepository.findOne(2L);
+		Restaurant sm = new Restaurant("novi9", "ns");
+		restaurantRepository.save(sm);
 		sm.setManager(null);
 		sm.setEmployee(null);
 		sm.setSuppliers(null);
@@ -735,7 +736,8 @@ public class RestoranApplicationTests {
 	public void createSupplier() throws Exception {
 		Collection<Supplier> e = (Collection<Supplier>) supRepository.findAll();
 		int size = e.size();
-		Restaurant r = restRepository.findOne(2L);
+		Restaurant r = new Restaurant("proba2", "ns");
+		restaurantRepository.save(r);
 		r.setManager(null);
 		r.setEmployee(null);
 		r.setSuppliers(null);
@@ -755,7 +757,8 @@ public class RestoranApplicationTests {
 	public void createEmployee() throws Exception {
 		Collection<Employee> e = (Collection<Employee>) emplRepository.findAll();
 		int size = e.size();
-		Restaurant r = restRepository.findOne(2L);
+		Restaurant r = new Restaurant("proba", "ns");
+		restaurantRepository.save(r);
 		r.setManager(null);
 		r.setEmployee(null);
 		r.setSuppliers(null);
@@ -796,7 +799,8 @@ public class RestoranApplicationTests {
 	public void addMenuItem() throws Exception {
 		Collection<MenuItem> menuitems = (Collection<MenuItem>) menuItemRepository.findAll();
 		int size = menuitems.size();
-		Restaurant r = restRepository.findOne(3L);
+		Restaurant r = new Restaurant("novi6", "ns");
+		restaurantRepository.save(r);
 		r.setManager(null);
 		r.setEmployee(null);
 		r.setSuppliers(null);
@@ -847,7 +851,8 @@ public class RestoranApplicationTests {
 	public void addDrinkMenuItem() throws Exception {
 		Collection<DrinkMenuItem> menuitems = (Collection<DrinkMenuItem>) dmenuItemRepository.findAll();
 		int size = menuitems.size();
-		Restaurant r = restRepository.findOne(4L);
+		Restaurant r = new Restaurant("novi", "ns");
+		restaurantRepository.save(r);
 		r.setManager(null);
 		r.setEmployee(null);
 		r.setSuppliers(null);
@@ -1101,7 +1106,7 @@ public class RestoranApplicationTests {
 
 		this.mvc.perform(post("/api/manager/getAvgRest").contentType(MediaType.APPLICATION_JSON_VALUE)
 				.content(IntegrationTestUtils.convertObjectToJsonBytes(r))).andExpect(status().isOk())
-				.andExpect(jsonPath("$", is(0.0)));
+				.andExpect(jsonPath("$", is(4.0)));
 		this.mvc.perform(post("/api/manager/getAvgFood").contentType(MediaType.APPLICATION_JSON_VALUE)
 				.content(IntegrationTestUtils.convertObjectToJsonBytes(r))).andExpect(status().isOk());
 		this.mvc.perform(post("/api/manager/getAvgWaiter").contentType(MediaType.APPLICATION_JSON_VALUE)
