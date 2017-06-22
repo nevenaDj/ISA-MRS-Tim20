@@ -94,6 +94,7 @@ public class GuestController {
 		Guest guest = guestService.findByEmailAndPass(user.getEmail(), user.getPassword());
 		System.out.println("Guest from base: " + guest);
 		if (!guest.isAccepted()) {
+			userService.logout();
 			return new ResponseEntity<Guest>(HttpStatus.NOT_FOUND);
 		}
 		session.setAttribute("guest", guest);
